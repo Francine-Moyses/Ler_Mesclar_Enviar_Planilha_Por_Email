@@ -10,10 +10,10 @@ print ("Dados carregados.")
 print ("Executando o programa...")
 df13.sort_values(by="Idade")
 df14[["Nome","Produto"]]
-df15.sort_values(by=["Qtd. Vendida","PrecoUnitario"], ascending=[False, True])
+df15.sort_values(by=["Coluna","Coluna"], ascending=[False, True])
 print(df13.shape, df14.shape, df15.shape)
 
-writer = pd.ExcelWriter('planilha_integrada_1.xlsx', engine='xlsxwriter')
+writer = pd.ExcelWriter('planilha.xlsx', engine='xlsxwriter')
 
 planilha1 = pd.DataFrame(df13)
 planilha2 = pd.DataFrame(df14)
@@ -31,7 +31,7 @@ print ("enviando e-mail...")
 outlook = win32.Dispatch('outlook.application')
 email = outlook.CreateItem(0)
 email.To = "email@outlook.com; email@gmail.com"
-email.Subject = "Planilha atualizada"
+email.Subject = "Planilha"
 email.HTMLBody = f"""
 <p>Senhores, segue arquivo com dados atualizados. </p>
 <p>Qualquer dúvida estou a disposição.</p>
@@ -40,7 +40,7 @@ email.HTMLBody = f"""
 <p>autor</p>
 """
 
-anexo = "/.xlsx"
+anexo = "planilha.xlsx"
 email.Attachments.Add(anexo)
 
 email.Send()
